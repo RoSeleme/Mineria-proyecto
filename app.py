@@ -6,7 +6,7 @@ st.set_page_config(page_title="Siniestros Viales en Argentina", layout="wide")
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("siniestros_limpio.csv")
+    df = pd.read_csv("siniestros_limpio(1).csv")
     return df
 
 df = load_data()
