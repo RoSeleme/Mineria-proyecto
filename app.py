@@ -12,10 +12,13 @@ def load_data():
 df = load_data()
 
 
+st.title("Análisis Exploratorio de Siniestros Viales Fatales en Argentina (2017 – Mar. 2023)")
+st.markdown("Dashboard interactivo para la exploración de patrones de riesgo vial utilizando datos del Sistema de Alerta Temprana (SAT).")
+st.markdown("---")
 
 # TÍTULO Y DESCRIPCIÓN GENERAL
-st.title(" Siniestros Viales Fatales en Argentina (2017–2023)")
-st.write("Este dashboard forma parte del proyecto final de la materia Minería de Datos.")
+st.title("Análisis Exploratorio de Siniestros Viales Fatales en Argentina (2017 – Mar. 2023)")
+st.markdown("Dashboard interactivo para la exploración de patrones de riesgo vial utilizando datos del Sistema de Alerta Temprana (SAT).")
 
 st.subheader("Vista general del dataset")
 st.dataframe(df.head())
