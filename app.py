@@ -58,6 +58,14 @@ fig_anio.update_layout(
     height=500
 )
 
+fig_anio.add_hline(
+    y=promedio_anual,
+    line_dash="dot",
+    line_color="red",
+    annotation_text=f"Promedio Anual: {promedio_anual:,.0f}".replace(",", "."),
+    annotation_position="top right"
+)
+
 st.plotly_chart(fig_anio, use_container_width=True)
 
 
