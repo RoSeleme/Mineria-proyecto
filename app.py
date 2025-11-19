@@ -86,7 +86,6 @@ st.markdown(
     """
 )
 
-st.subheader("Distribución Geográfica y Condicionalidad (KDD: Exploración de Patrones)")
 
 # ------------------------------------------------------------------
 # SECCIÓN 2: DISTRIBUCIÓN GEOGRÁFICA POR PROVINCIA
