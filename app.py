@@ -60,16 +60,4 @@ fig_anio.update_layout(
 
 st.plotly_chart(fig_anio, use_container_width=True)
 
-# Gráfico de barras con Matplotlib
-fig, ax = plt.subplots(figsize=(8, 5))
-ax.bar(df_anio["anio"], df_anio["victimas"])
 
-ax.set_title("Víctimas fatales por año")
-ax.set_xlabel("Año")
-ax.set_ylabel("Cantidad de víctimas fatales")
-
-for i, v in enumerate(df_anio["victimas"]):
-    ax.text(df_anio["anio"].iloc[i], v + 50, str(v),
-            ha='center', va='bottom', fontsize=8)
-
-st.pyplot(fig)
