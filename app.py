@@ -19,7 +19,9 @@ st.markdown("Dashboard interactivo para la exploración de patrones de riesgo vi
 
 st.subheader("Vista general del dataset")
 st.dataframe(df.head())
- 
+
+
+# ------------------------------------------------------------------
 # SECCIÓN 1: EVOLUCIÓN ANUAL DE VÍCTIMAS FATALES
 st.subheader("Evolución anual de víctimas fatales comprendidas entre el periodo 2017–2023 ( año 2023 parcial)")
 
@@ -76,3 +78,49 @@ st.markdown(
     """, 
     unsafe_allow_html=True
 )
+
+
+st.subheader("Distribución Geográfica y Condicionalidad (KDD: Exploración de Patrones)")
+
+# ------------------------------------------------------------------
+## 1. FILTRO INTERACTIVO (Requerimiento de la consigna)
+# Se usa st.sidebar para que el filtro aparezca en el panel lateral
+provincias_disponibles = sorted(df['provincia_nombre'].unique())
+provincias_filtradas = st.sidebar.multiselect(
+    "📍 Seleccione Provincia(s):",
+    options=provincias_disponibles,
+    default=provincias_disponibles  # Por defecto, muestra todas
+)
+
+df_filtrado = df[df['provincia_nombre'].isin(provincias_filtradas)]
+
+if df_filtrado.empty:
+    st.warning("No hay datos para las provincias seleccionadas. Ajuste su filtro.")
+    st.stop()
+
+
+# ------------------------------------------------------------------
+## 2. VISUALIZACIÓN 2: Top Provincias (Distribución Geográfica)
+
+col_prov_1, col_prov_2 = st.columns([1, 2])
+
+# Métrica adicional (para que la columna 1 no quede vacía)
+victimas_filtradas = len(df_filtrado)
+col_prov_1.metric("Víctimas en Provincias Seleccionadas", f"{victimas_filtradas:,.0f}".replace(",", "."))
+
+
+# Gráfico de Barras para el TOP 10 (Se adapta si se selecciona menos provincias)
+df_prov_top = df_filtrado['provincia_nombre'].value_counts().nlargest(10).reset_index()
+df_prov_top.columns = ['Provincia', 'Fatalidades']
+
+fig_prov = px.bar(
+    df_prov_top,
+    x='Fatalidades',
+    y='Provincia',
+    orientation='h',
+    title='Top 10 Provincias con Mayor Cantidad de Siniestros Fatales',
+    labels={'Fatalidades': 'Nº de Víctimas Fatales', 'Provincia': ''},
+    color='Fatalidades'
+)
+fig_prov.update_layout(yaxis={'categoryorder':'total ascending'}, title_x=0.5)
+col_prov_2.plotly_chart(fig_prov, use_container_width=True)
