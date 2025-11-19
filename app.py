@@ -22,7 +22,7 @@ st.dataframe(df.head())
 # SECCIÓN 1: EVOLUCIÓN ANUAL DE VÍCTIMAS FATALES
 st.subheader("Evolución anual de víctimas fatales comprendidas entre el periodo 2017–2023")
 
-# Agrupar por año y contar víctimas
+# Agrupo por año y realizo conteo de las víctimas
 df_anio = df.groupby("anio").size().reset_index(name="victimas")
 
 # Métricas principales
