@@ -3,23 +3,6 @@ import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
 
-# ==== CSS para personalizar los multiselect del filtro ====
-st.markdown("""
-    <style>
-    /* Color del fondo de las etiquetas seleccionadas */
-    .stMultiSelect div[data-baseweb="tag"] {
-        background-color: #1f77b4 !important;  /* azul */
-        color: white !important;
-    }
-
-    /* Color del "x" dentro de cada etiqueta */
-    .stMultiSelect div[data-baseweb="tag"] svg {
-        fill: white !important;
-    }
-    </style>
-""", unsafe_allow_html=True)
-# ----------------------------------------------------
-
 st.set_page_config(page_title="Siniestros Viales en Argentina", layout="wide")
 
 @st.cache_data
