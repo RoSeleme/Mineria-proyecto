@@ -64,6 +64,7 @@ fig_anio.add_hline(
     line_color="red",
     annotation_text=f"Promedio Anual: {promedio_anual:,.0f}".replace(",", "."),
     annotation_position="top right"
+    title="la línea roja punteada indica la media de casos fatales"
 )
 
 st.plotly_chart(fig_anio, use_container_width=True)
