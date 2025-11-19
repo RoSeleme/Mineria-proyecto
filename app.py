@@ -46,7 +46,7 @@ fig_anio = px.bar(
     x="anio",
     y="victimas",
     labels={"anio": "Año", "victimas": "Cantidad de víctimas fatales"},
-    title="Víctimas fatales por año",
+    title="Tendencia de Siniestros Fatales por Año",
     text="victimas"
 )
 
