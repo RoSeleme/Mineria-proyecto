@@ -89,3 +89,58 @@ st.markdown(
 st.subheader("Distribución Geográfica y Condicionalidad (KDD: Exploración de Patrones)")
 
 # ------------------------------------------------------------------
+# SECCIÓN 2: DISTRIBUCIÓN GEOGRÁFICA POR PROVINCIA
+st.markdown("---")
+st.subheader("Distribución geográfica de víctimas por provincia")
+
+# 1) Filtro interactivo en la barra lateral
+st.sidebar.subheader("Filtros")
+
+provincias = sorted(df['provincia_nombre'].unique())
+
+provincias_seleccionadas = st.sidebar.multiselect(
+    "Seleccione provincias:",
+    options=provincias,
+    default=provincias  # por defecto, todas
+)
+
+# Filtramos el df según las provincias elegidas
+df_prov = df[df['provincia_nombre'].isin(provincias_seleccionadas)]
+
+if df_prov.empty:
+    st.warning("No hay datos para las provincias seleccionadas. Ajuste el filtro.")
+    st.stop()
+
+# 2) Métrica de víctimas fatales en provincias seleccionadas 
+victimas_filtradas = len(df_prov)
+st.metric(
+    "Víctimas fatales en provincias seleccionadas",
+    f"{victimas_filtradas:,.0f}".replace(",", ".")
+)
+
+# 3) Gráfico Top 10 provincias 
+df_prov_top = (
+    df_prov['provincia_nombre']
+    .value_counts()
+    .nlargest(10)
+    .reset_index()
+)
+df_prov_top.columns = ['Provincia', 'Víctimas']
+
+fig_prov = px.bar(
+    df_prov_top,
+    x='Víctimas',
+    y='Provincia',
+    orientation='h',
+    title="Top 10 de provincias con mayor casos de víctimas fatales",
+    labels={'Víctimas': 'Cantidad de víctimas', 'Provincia': ''},
+    color='Víctimas'
+)
+
+fig_prov.update_layout(
+    yaxis={'categoryorder': 'total ascending'},
+    height=500,
+    title_x=0.5
+)
+
+st.plotly_chart(fig_prov, use_container_width=True)
