@@ -6,12 +6,15 @@ import matplotlib.pyplot as plt
 # ==== CSS para personalizar los multiselect del filtro ====
 st.markdown("""
     <style>
+    /* Color del fondo de las etiquetas seleccionadas */
     .stMultiSelect div[data-baseweb="tag"] {
-        background-color: #e0e0e0 !important;
-        color: black !important;
+        background-color: #1f77b4 !important;  /* azul */
+        color: white !important;
     }
+
+    /* Color del "x" dentro de cada etiqueta */
     .stMultiSelect div[data-baseweb="tag"] svg {
-        fill: black !important;
+        fill: white !important;
     }
     </style>
 """, unsafe_allow_html=True)
