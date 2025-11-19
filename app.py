@@ -68,4 +68,11 @@ fig_anio.add_hline(
 
 st.plotly_chart(fig_anio, use_container_width=True)
 
-
+st.markdown(
+    """
+    <p style='font-size: small; color: #7f7f7f;'>
+    * La línea punteada roja representa el promedio anual de víctimas fatales.
+    </p>
+    """, 
+    unsafe_allow_html=True
+)
