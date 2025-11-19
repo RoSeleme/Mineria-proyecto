@@ -111,6 +111,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Interpretación contextual de anomalías (como la caída de casos en 2020 por pandemia).
+st.markdown(
+    """
+    **Contexto Clave:** La drástica disminución de siniestros fatales observada en **2020 y 2021** se interpreta como una **anomalía** directamente relacionada con las **restricciones de circulación impuestas por la pandemia de COVID-19**, lo cual demuestra la correlación entre movilidad y siniestralidad.
+    """
+)
 
 st.subheader("Distribución Geográfica y Condicionalidad (KDD: Exploración de Patrones)")
 
