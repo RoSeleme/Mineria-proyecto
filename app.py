@@ -60,18 +60,6 @@ fig_anio.update_layout(
     height=500
 )
 
-# Anotación para el año 2020 (Punto de inflexión - pandemia)
-fig_anio.add_annotation(
-    x=2020,  # Columna 'anio'
-    y=df_anual[df_anual['anio'] == 2020]['Fatalidades'].iloc[0],  # El valor exacto de fatalidades de 2020
-    text="Baja por Pandemia COVID-19",
-    showarrow=True,
-    arrowhead=1,
-    ax=-50,
-    ay=-80,
-    font=dict(size=12, color="blue")
-)
-
 fig_anio.add_hline(
     y=promedio_anual,
     line_dash="dot",
