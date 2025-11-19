@@ -68,38 +68,6 @@ fig_anio.add_hline(
     annotation_position="top right"
 )
 
-# Para asegurar que las anotaciones apunten al valor correcto:
-# Extraemos el valor de fatalidades para el año 2020 y 2022 del DataFrame df_anio
-
-# 1. Anotación para el año 2020 (Baja por Pandemia)
-# Utilizamos .iloc[0] porque la búsqueda devuelve un DataFrame de 1 fila
-victimas_2020 = df_anio[df_anio['anio'] == 2020]['victimas'].iloc[0]
-fig_anio.add_annotation(
-    x=2020,  # Posición en el eje X (Año)
-    y=victimas_2020,  # Posición en el eje Y (el valor de víctimas)
-    text="Baja por Pandemia",
-    showarrow=True,
-    arrowhead=1,
-    ax=-50,
-    ay=-80,
-    font=dict(size=12, color="#005C99") # Color azul para destacar la anomalía
-)
-
-# 2. Anotación para el año 2022 (Repunte)
-victimas_2022 = df_anio[df_anio['anio'] == 2022]['victimas'].iloc[0]
-fig_anio.add_annotation(
-    x=2022,
-    y=victimas_2022,
-    text="Repunte Post-Pandemia",
-    showarrow=True,
-    arrowhead=1,
-    ax=50,
-    ay=-80,
-    font=dict(size=12, color="#008000") # Color verde para el repunte
-)
-
-# -------------------------------------------------------------
-
 st.plotly_chart(fig_anio, use_container_width=True)
 
 st.markdown(
